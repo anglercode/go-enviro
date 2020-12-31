@@ -1,4 +1,5 @@
-# go-enviro
+# go-enviro ![CI](https://github.com/mcneilcode/go-enviro/workflows/CI/badge.svg) [![Go Report Card](https://goreportcard.com/badge/github.com/mcneilcode/go-enviro)](https://goreportcard.com/report/github.com/mcneilcode/go-enviro)
+
 
 Environment helper for go.
 
