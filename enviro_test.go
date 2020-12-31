@@ -24,7 +24,7 @@ func TestGetNonExist(t *testing.T) {
 	shouldntExist := getRandString(48)
 	value := Get(shouldntExist, "KNOWN_VALUE")
 	if value != "KNOWN_VALUE" {
-		t.Errorf("Failed to get default value from getEnv when non-existant variable is asked for. Got: %s", value)
+		t.Errorf("Failed to get default value from getEnv when non-existent variable is asked for. Got: %s", value)
 	}
 }
 
@@ -44,7 +44,7 @@ func TestGetIntNonExist(t *testing.T) {
 	shouldntExist := getRandString(48)
 	value := GetInt(shouldntExist, 1999)
 	if value != 1999 {
-		t.Errorf("Did not get default value from getEnvInt when non-existant variable is asked for. Got: %d", value)
+		t.Errorf("Did not get default value from getEnvInt when non-existent variable is asked for. Got: %d", value)
 	}
 }
 
@@ -76,7 +76,7 @@ func TestGetBoolNonExist(t *testing.T) {
 	shouldntExist := getRandString(48)
 	value := GetBool(shouldntExist, false)
 	if value {
-		t.Errorf("Did not get default value from getEnvInt when non-existant variable is asked for.")
+		t.Errorf("Did not get default value from getEnvInt when non-existent variable is asked for.")
 	}
 }
 
@@ -107,7 +107,7 @@ func TestGetSliceNonExist(t *testing.T) {
 	shouldntExist := getRandString(48)
 	value := GetSlice(shouldntExist, ",", []string{"default", "tester"})
 	if value[0] != "default" || value[1] != "tester" {
-		t.Errorf("Did not get default values from getEnvSlice when non-existant variable is asked for. Got: %s", value)
+		t.Errorf("Did not get default values from getEnvSlice when non-existent variable is asked for. Got: %s", value)
 	}
 }
 
