@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// Get returns the value of an environment variable or the provided default when non-existant.
+// Get returns the value of an environment variable or the provided default when non-existent.
 func Get(name string, defaultValue string) string {
 	if value, exists := os.LookupEnv(name); exists {
 		return value
@@ -32,7 +32,7 @@ func GetBool(name string, defaultValue bool) bool {
 	return defaultValue
 }
 
-// GetSlice returns the value of an environment variable as a string slice based on the provided seperator.
+// GetSlice returns the value of an environment variable as a string slice based on the provided separator.
 func GetSlice(name string, sep string, defaultValue []string) []string {
 	value := Get(name, "")
 
