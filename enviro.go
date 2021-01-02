@@ -6,7 +6,8 @@ import (
 	"strings"
 )
 
-// Get returns the value of an environment variable or the provided default when non-existent.
+// Get returns the value of an environment variable or
+// the provided default when non-existent as a string.
 func Get(name string, defaultValue string) string {
 	if value, exists := os.LookupEnv(name); exists {
 		return value
@@ -14,7 +15,8 @@ func Get(name string, defaultValue string) string {
 	return defaultValue
 }
 
-// GetInt returns the value of an environment variable as an integer value.
+// GetInt returns the value of an environment variable as
+// an integer value or the provided default integer.
 func GetInt(name string, defaultValue int) int {
 	value := Get(name, "")
 	if value, err := strconv.Atoi(value); err == nil {
@@ -23,7 +25,8 @@ func GetInt(name string, defaultValue int) int {
 	return defaultValue
 }
 
-// GetBool returns the value of an environment variable as a boolean value.
+// GetBool returns the value of an environment variable as
+// a boolean value or the provided default boolean.
 func GetBool(name string, defaultValue bool) bool {
 	value := Get(name, "")
 	if val, err := strconv.ParseBool(value); err == nil {
@@ -32,7 +35,9 @@ func GetBool(name string, defaultValue bool) bool {
 	return defaultValue
 }
 
-// GetSlice returns the value of an environment variable as a string slice based on the provided separator.
+// GetSlice returns the value of an environment variable as
+// a string slice based on the provided separator. It also takes
+// a string slice to use as a fallback default.
 func GetSlice(name string, sep string, defaultValue []string) []string {
 	value := Get(name, "")
 
