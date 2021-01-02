@@ -1,6 +1,6 @@
-# go-enviro ![CI](https://github.com/mcneilcode/go-enviro/workflows/Builds/badge.svg) [![Go Report Card](https://goreportcard.com/badge/github.com/mcneilcode/go-enviro)](https://goreportcard.com/report/github.com/mcneilcode/go-enviro)
+# go-enviro ![CI](https://github.com/mcneilcode/go-enviro/workflows/Builds/badge.svg) [![GoDoc](https://godoc.org/github.com/mcneilcode/go-enviro?status.svg)](https://godoc.org/github.com/mcneilcode/go-enviro) [![Go Report Card](https://goreportcard.com/badge/github.com/mcneilcode/go-enviro)](https://goreportcard.com/report/github.com/mcneilcode/go-enviro)
 
-Environment helper for go.
+Environment helpers for go.
 
 # Usage
 
@@ -10,10 +10,10 @@ import "github.com/mcneilcode/go-enviro"
 
 ## Get
 
-Returns the value for the environment variable if it exists or the provided default variable if it doesn't.
+Returns the value for the environment variable if it exists or the provided default variable if it doesn't as a string.
 
 ```go
-enviro.Get("MY_STR_VAR", "some_default")
+enviro.Get("MY_VAR", "some_default")
 ```
 
 ## GetInt
