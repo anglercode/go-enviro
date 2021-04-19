@@ -2,9 +2,9 @@
 
 Environment helpers for go.
 
-# Usage
+## Usage
 
-```
+```go
 import "github.com/mcneilcode/go-enviro"
 ```
 
@@ -21,7 +21,15 @@ enviro.Get("MY_VAR", "some_default")
 Returns the value for the environment variable as an integer if it exists or the provided default integer if it doesn't.
 
 ```go
-enviro.GetInt("MY_INT_VAR", 2020)
+enviro.GetInt("MY_INT_VAR", 2021)
+```
+
+## GetInt64
+
+Returns the value for the environment variable as a 64-bit signed integer if it exists or the provided default int64 if it doesn't.
+
+```go
+enviro.GetInt64("MY_INT64_VAR", 2021)
 ```
 
 ## GetBool
@@ -30,6 +38,22 @@ Returns the value for the environment variable as a boolean value if it exists o
 
 ```go
 enviro.GetBool("MY_BOOL_VAR", false)
+```
+
+## GetFloat32
+
+Returns the value for the environment variable as a float32 value if it exists or the provided default float32 if it doesn't.
+
+```go
+enviro.GetFloat32("MY_FLOAT32_VAR", 9.99)
+```
+
+## GetFloat64
+
+Returns the value for the environment variable as a float64 value if it exists or the provided default float64 if it doesn't.
+
+```go
+enviro.GetFloat64("MY_FLOAT64_VAR", 9.99)
 ```
 
 ## GetSlice
