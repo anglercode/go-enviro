@@ -7,28 +7,27 @@ import (
 	"time"
 )
 
-// GetEnv tests
+// Get tests
 func TestGetExist(t *testing.T) {
 	tmpName := getRandString(8)
 	tmpValue := getRandString(12)
 	os.Setenv(tmpName, tmpValue)
 
 	value := Get(tmpName, "SHOULD_NOT_BE_THIS")
-	if value != tmpValue || value == "SHOULD_NOT_BE_THIS" || value == "" {
+	if value != string(tmpValue) || value == "SHOULD_NOT_BE_THIS" || value == "" {
 		t.Errorf("Failed to get value for an existing environment variable. Got: %s", value)
 	}
-
 }
 
 func TestGetNonExist(t *testing.T) {
-	shouldntExist := getRandString(48)
-	value := Get(shouldntExist, "KNOWN_VALUE")
-	if value != "KNOWN_VALUE" {
+	shouldNotExist := getRandString(48)
+	value := Get(shouldNotExist, "KNOWN_VALUE")
+	if value != string("KNOWN_VALUE") {
 		t.Errorf("Failed to get default value from Get when non-existent variable is asked for. Got: %s", value)
 	}
 }
 
-// GetEnvInt tests
+// GetInt tests
 func TestGetIntExist(t *testing.T) {
 	tmpName := getRandString(8)
 	tmpValue := "666"
@@ -41,22 +40,14 @@ func TestGetIntExist(t *testing.T) {
 }
 
 func TestGetIntNonExist(t *testing.T) {
-	shouldntExist := getRandString(48)
-	value := GetInt(shouldntExist, 1999)
+	shouldNotExist := getRandString(48)
+	value := GetInt(shouldNotExist, 1999)
 	if value != 1999 {
 		t.Errorf("Did not get default value from GetInt when non-existent variable is asked for. Got: %d", value)
 	}
 }
 
-func TestGetInt64NonExist(t *testing.T) {
-	shouldntExist := getRandString(48)
-	value := GetInt64(shouldntExist, 1999)
-	if value != 1999 {
-		t.Errorf("Did not get default value from GetInt64 when non-existent variable is asked for. Got: %d", value)
-	}
-}
-
-// GetEnvInt64 tests
+// GetInt64 tests
 func TestGetInt64Exist(t *testing.T) {
 	tmpName := getRandString(8)
 	tmpValue := "6664"
@@ -68,8 +59,15 @@ func TestGetInt64Exist(t *testing.T) {
 	}
 }
 
-// GetEnvBool tests
+func TestGetInt64NonExist(t *testing.T) {
+	shouldNotExist := getRandString(48)
+	value := GetInt64(shouldNotExist, 1999)
+	if value != 1999 {
+		t.Errorf("Did not get default value from GetInt64 when non-existent variable is asked for. Got: %d", value)
+	}
+}
 
+// GetBool tests
 func TestGetBoolExist(t *testing.T) {
 	tmpName := getRandString(8)
 	tmpValue := "false"
@@ -93,14 +91,54 @@ func TestGetBoolExist2(t *testing.T) {
 }
 
 func TestGetBoolNonExist(t *testing.T) {
-	shouldntExist := getRandString(48)
-	value := GetBool(shouldntExist, false)
+	shouldNotExist := getRandString(48)
+	value := GetBool(shouldNotExist, false)
 	if value {
-		t.Errorf("Did not get default value from getEnvInt when non-existent variable is asked for.")
+		t.Errorf("Did not get default value from getEnvInt when non-existent variable was asked for.")
 	}
 }
 
-// GetEnvSlice tests
+// GetFloat32 tests
+func TestGetFloat32Exist(t *testing.T) {
+	tmpName := getRandString(8)
+	tmpValue := "5.55"
+	os.Setenv(tmpName, tmpValue)
+
+	value := GetFloat32(tmpName, 5.55)
+	if value != float32(5.55) {
+		t.Errorf("Unable to get value as float32 for existing environment variable.")
+	}
+}
+
+func TestGetFloat32NonExist(t *testing.T) {
+	shouldNotExist := getRandString(48)
+	value := GetFloat32(shouldNotExist, 5.55)
+	if value != float32(5.55) {
+		t.Errorf("Did not get default value from GetFloat32 when non-existent variable was asked for.")
+	}
+}
+
+// Get Float64 tests
+func TestGetFloat64Exist(t *testing.T) {
+	tmpName := getRandString(8)
+	tmpValue := "5.55"
+	os.Setenv(tmpName, tmpValue)
+
+	value := GetFloat64(tmpName, 5.55)
+	if value != float64(5.55) {
+		t.Errorf("Unable to get value as float32 for existing environment variable.")
+	}
+}
+
+func TestGetFloat64NonExist(t *testing.T) {
+	shouldNotExist := getRandString(64)
+	value := GetFloat64(shouldNotExist, 5.55)
+	if value != float64(5.55) {
+		t.Errorf("Did not get default value from GetFloat64 when non-existent variable was asked for.")
+	}
+}
+
+// GetSlice tests
 
 func TestGetSliceCommasExist(t *testing.T) {
 	tmpName := getRandString(8)
@@ -124,8 +162,8 @@ func TestGetSliceColonsExist(t *testing.T) {
 	}
 }
 func TestGetSliceNonExist(t *testing.T) {
-	shouldntExist := getRandString(48)
-	value := GetSlice(shouldntExist, ",", []string{"default", "tester"})
+	shouldNotExist := getRandString(48)
+	value := GetSlice(shouldNotExist, ",", []string{"default", "tester"})
 	if value[0] != "default" || value[1] != "tester" {
 		t.Errorf("Did not get default values from getEnvSlice when non-existent variable is asked for. Got: %s", value)
 	}
