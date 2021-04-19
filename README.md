@@ -45,7 +45,7 @@ enviro.GetBool("MY_BOOL_VAR", false)
 Returns the value for the environment variable as a float32 value if it exists or the provided default float32 if it doesn't.
 
 ```go
-enviro.GetFloat("MY_FLOAT32_VAR", 9.99)
+enviro.GetFloat32("MY_FLOAT32_VAR", 9.99)
 ```
 
 ## GetFloat64
@@ -53,7 +53,7 @@ enviro.GetFloat("MY_FLOAT32_VAR", 9.99)
 Returns the value for the environment variable as a float64 value if it exists or the provided default float64 if it doesn't.
 
 ```go
-enviro.GetFloat("MY_FLOAT64_VAR", 9.99)
+enviro.GetFloat64("MY_FLOAT64_VAR", 9.99)
 ```
 
 ## GetSlice
