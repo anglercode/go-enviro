@@ -25,6 +25,16 @@ func GetInt(name string, defaultValue int) int {
 	return defaultValue
 }
 
+// GetInt64 returns the value of an environment variable as
+// a 64-bit base 10 value or the provided default.
+func GetInt64(name string, defaultValue int64) int64 {
+	value := Get(name, "")
+	if value, err := strconv.ParseInt(value, 10, 64); err == nil {
+		return value
+	}
+	return defaultValue
+}
+
 // GetBool returns the value of an environment variable as
 // a boolean value or the provided default boolean.
 func GetBool(name string, defaultValue bool) bool {
