@@ -24,7 +24,7 @@ func TestGetNonExist(t *testing.T) {
 	shouldntExist := getRandString(48)
 	value := Get(shouldntExist, "KNOWN_VALUE")
 	if value != "KNOWN_VALUE" {
-		t.Errorf("Failed to get default value from getEnv when non-existent variable is asked for. Got: %s", value)
+		t.Errorf("Failed to get default value from Get when non-existent variable is asked for. Got: %s", value)
 	}
 }
 
@@ -44,7 +44,27 @@ func TestGetIntNonExist(t *testing.T) {
 	shouldntExist := getRandString(48)
 	value := GetInt(shouldntExist, 1999)
 	if value != 1999 {
-		t.Errorf("Did not get default value from getEnvInt when non-existent variable is asked for. Got: %d", value)
+		t.Errorf("Did not get default value from GetInt when non-existent variable is asked for. Got: %d", value)
+	}
+}
+
+func TestGetInt64NonExist(t *testing.T) {
+	shouldntExist := getRandString(48)
+	value := GetInt64(shouldntExist, 1999)
+	if value != 1999 {
+		t.Errorf("Did not get default value from GetInt64 when non-existent variable is asked for. Got: %d", value)
+	}
+}
+
+// GetEnvInt64 tests
+func TestGetInt64Exist(t *testing.T) {
+	tmpName := getRandString(8)
+	tmpValue := "6664"
+	os.Setenv(tmpName, tmpValue)
+
+	value := GetInt64(tmpName, 6661)
+	if value != 6664 {
+		t.Errorf("Unable to get value for an existing environment variable as an int64. Got: %d", value)
 	}
 }
 
@@ -112,7 +132,6 @@ func TestGetSliceNonExist(t *testing.T) {
 }
 
 // Test Helpers
-
 func getRandString(length int) string {
 	var randomSeed *rand.Rand = rand.New(
 		rand.NewSource(time.Now().UnixNano()))
